@@ -1,50 +1,33 @@
-
 pipeline{
+    
+    agent any
+    
     tools{
-       
         maven 'mymaven'
     }
-	agent any
-      stages{
-           stage('Checkout the code'){
-	    
-               steps{
-		 echo 'cloning the repo'
-                 git 'https://github.com/Sonal0409/DevOpsClassCodes.git'
-              }
-          }
-          stage('Compile'){
-             
-              steps{
-                  echo 'complie the code again..'
-                  sh 'mvn compile'
-	      }
-          }
-          stage('CodeReview'){
-		  
-              steps{
-		    
-		  echo 'codeReview'
-                  sh 'mvn pmd:pmd'
-              }
-          }
-           stage('UnitTest'){
-		  
-              steps{
-	         
-                  sh 'mvn test'
-              }
-          
-          }
+    
+    stages{
+        stage('checkout code')
+        {
+            steps{
+                git  'https://github.com/Sonal0409/DevOpsCodeDemo.git'
+            }
+        }
         
-          stage('Package'){
-		  
-              steps{
-		  
-                  sh 'mvn package'
-              }
-          }
-	     
-          
-      }
-}
+        stage('Build and Deploy the Code')
+        {
+            steps{
+                sh 'mvn clean install package'
+            }
+            
+            post{
+
+                 success{
+                    deploy adapters: [tomcat9(credentialsId: 'tomcat1', path: '', url: 'http://localhost:9090/')], contextPath: null, war: '**/*.war'
+                }
+                
+            }
+        }
+        
+    }
+    }
