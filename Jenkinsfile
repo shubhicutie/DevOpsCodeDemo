@@ -23,7 +23,7 @@ pipeline{
             post{
 
                  success{
-                    deploy adapters: [tomcat9(credentialsId: 'tomcat1', path: '', url: 'http://localhost:9090/')], contextPath: null, war: '**/*.war'
+                    deploy adapters: [tomcat9(credentialsId: 'tomcat01', path: '', url: 'http://35.154.141.110:8080/')], contextPath: null, war: '**/*.war'
                 }
                 
             }
