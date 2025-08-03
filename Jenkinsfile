@@ -5,11 +5,6 @@ agent any
   }
 
 stages{
-  stage('Clean Workspace') {
-      steps {
-        cleanWs()   // Cleans the entire workspace directory
-      }
-    }
 stage('clone Repo')
   {
     steps{
