@@ -22,7 +22,7 @@ stage('Build Code')
 stage('Deploy Code')
   {
     steps{
-      kubernetesDeploy configs: '', kubeConfig: [path: ''], kubeconfigId: 'k8sconfigpwd', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+      kubernetesDeploy (configs: 'kubedeploy.yml',kubeconfigId: 'k8sconfigpwd')
     }
   }
 }
