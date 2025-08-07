@@ -19,7 +19,7 @@ stage('Build Code')
     }
   }
 
-stage('Deploy Code')
+stage('Deploy Code in tomcat')
   {
     steps{
      deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'tomcat01', path: '', url: 'http://43.204.217.65:8080/')], contextPath: null, war: '**/*.war'
