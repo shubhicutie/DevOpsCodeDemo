@@ -22,7 +22,7 @@ stage('Build Code')
 stage('Deploy Code')
   {
     steps{
-      kubernetesDeploy (configs: 'kubedeploy.yml',kubeconfigId: 'k8sconfigpwd')
+     deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'tomcat01', path: '', url: 'http://43.204.217.65:8080/')], contextPath: null, war: '**/*.war'
     }
   }
 }
