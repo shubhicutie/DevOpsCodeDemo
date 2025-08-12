@@ -22,7 +22,7 @@ stage('Build Code')
 stage('Deploy Code in tomcat')
   {
     steps{
-     deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'tomcatCred01', path: '', url: 'http://3.109.181.51:8080/')], contextPath: null, war: '**/*.war'
+     deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'tomcatcred02', path: '', url: 'http://13.126.253.187:8080/')], contextPath: null, war: '**/*.war'
    }
   }
 }
